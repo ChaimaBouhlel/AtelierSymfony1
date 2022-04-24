@@ -8,10 +8,18 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Hello</h1>
-<h2>{{ nom | capitalize }}</h2>
-<br>
-<hr>
-<h2>Today is {{ "now" | date('d/m/Y')}}</h2>
+<table class="table">
+    {% for note in notes %}
+    <tr>
+        <td>{{ note }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="alert alert-info">
+    <p>Nombre de notes: {{ notes | length }}</p>
+    <p>Note minimale: {{ min(notes) }}</p>
+    <p>Note maximale: {{ max(notes) }}</p>
+</div>
+
 </body>
 </html>
