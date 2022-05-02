@@ -13,5 +13,8 @@
 <br>
 <hr>
 <h2>Today is {{ "now" | date('d/m/Y')}}</h2>
+<div>
+    <img src="{{ asset('assets/images/') ~ path | defaultImage }}" alt="">
+</div>
 </body>
 </html>

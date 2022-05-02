@@ -21,7 +21,8 @@ class FirstController extends AbstractController
     public function sayHello($name):Response
     {
         return $this->render('first/hello.html.twig',[
-            'nom'=>$name
+            'nom'=>$name,
+            'path' =>'   '
         ]);
     }
 
@@ -31,5 +32,11 @@ class FirstController extends AbstractController
     public function multiplication($entier1, $entier2):Response{
         $resultat = $entier1 * $entier2;
         return new Response("<h1>$resultat</h1>");
+    }
+
+    #[Route('/template', name: 'app_first')]
+    public function template(): Response
+    {
+        return $this->render('template.html.twig');
     }
 }

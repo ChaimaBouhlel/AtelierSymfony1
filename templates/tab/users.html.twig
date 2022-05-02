@@ -1,0 +1,24 @@
+{% extends 'template.html.twig' %}
+{% block title %}
+    users
+{% endblock %}
+{% block pageTitle%}
+    Users
+{% endblock %}
+{% block body %}
+<table class="table">
+    <tr class="table-active">
+        <th>Firstname</th>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    {% for user in users %}
+    <tr class="table-{% if loop.index is odd %}danger{% else %}warning{% endif %}">
+        <td>{{ user.firstname | capitalize}}</td>
+        <td>{{ user.name | capitalize }}</td>
+        <td>{{ user.age |capitalize }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
