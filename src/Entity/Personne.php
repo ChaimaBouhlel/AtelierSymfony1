@@ -25,6 +25,9 @@ class Personne
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $job;
 
+    #[ORM\OneToOne(inversedBy: 'personne', targetEntity: Profile::class, cascade: ['persist', 'remove'])]
+    private $profile;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,18 @@ class Personne
     public function setJob(?string $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?Profile $profile): self
+    {
+        $this->profile = $profile;
 
         return $this;
     }
