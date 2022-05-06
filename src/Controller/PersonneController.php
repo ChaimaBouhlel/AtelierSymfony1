@@ -3,11 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Personne;
+use App\Form\PersonneType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Symfony\Component\Translation\t;
 
 #[Route('personne')]
 
@@ -79,18 +81,11 @@ class PersonneController extends AbstractController
         //$this->getDoctrine() : Version sf <=5
         $entityManager = $doctrine->getManager();
         $personne = new Personne();
-        $personne->setFirstname("Chaima");
-        $personne->setName("Bouhlel");
-        $personne->setAge(21);
-
-        //Ajouter l'opération d'insertion de la personne dans ma transaction
-        $entityManager->persist($personne);
-
-        //Exécuter ma transaction
-        $entityManager->flush();
-
-        return $this->render('personne/detail.html.twig', [
-            'personne' => $personne,
+        $form = $this->createForm(PersonneType::class, $personne);
+        $form->remove('createdAt');
+        $form->remove('updatedAt');
+        return $this->render('personne/add-personne.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 
